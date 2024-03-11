@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Hopital Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système de gestion des
+					patients</a>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">Modification d'un patient</h2>
+		<div>
+			<form method="post"
+				th:action="@{/savePatient}" th:object="${Patient}">
+				<div class="form-group">
+					<input
+						type="hidden" th:field="*{id}" class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="Patient_nomInput">Nom du patient</label> 
+					<input
+						type="text" th:field="*{Patient_nom}" class="form-control" id="Patient_nomInput"
+						aria-describedby="Patient_nomHelp" placeholder="Saisir le nom du patient"> <small
+						id="Patient_nomHelp" class="form-text text-muted">Merci de renseigner le nouveau nom du patient.</small>
+				</div>
+				<div class="form-group">
+					<label for="Patient_prenomInput">Prénom du patient</label> 
+					<input
+						type="text" th:field="*{Patient_prenom}" class="form-control" id="Patiens_prenomInput"
+						aria-describedby="Patient_prenomHelp" placeholder="Saisir le prénom du patient"> <small
+						id="Patient_prenomHelp" class="form-text text-muted">Merci de renseigner le nouveau prénom du patient.</small>
+				</div>
+				<div class="form-group">
+					<label for="Patient_numeroInput">Numéro du patient</label> 
+					<input
+						type="text" th:field="*{Patient_numero}" class="form-control" id="Patient_numeroInput"
+						aria-describedby="Patient_numeroHelp" placeholder="Saisir le numéro du patient"> <small
+						id="Patient_numeroHelp" class="form-text text-muted">Merci de renseigner le nouveau numéro du patient.</small>
+				</div>
+				<div class="form-group">
+					<label for="Patient_blessureInput">Blessure(s) du patient</label> 
+					<input
+						type="text" th:field="*{Patient_blessure}" class="form-control" id="Patient_blessureInput"
+						aria-describedby="Patient_blessureHelp" placeholder="Saisir le(s) blessure(s) du patient"> <small
+						id="Patient_blessureHelp" class="form-text text-muted">Merci de renseigner le ou les nouvelles blessure(s) du patient.</small>
+				</div>
+				
+				<div class="form-group">
+					<label for="Patient_specialisationInput">Spécialisations du patient</label> 
+					<input
+						type="text" th:field="*{Patient_specialisation}" class="form-control" id="Patient_specialisationInput"
+						aria-describedby="Patient_specialisationHelp" placeholder="Saisir la spécialisation nécessaire pour le patient (ex : Cardiologie, immunologie etc)"> <small
+						id="Patient_specialisationHelp" class="form-text text-muted">Merci de renseigner la nouvelle spécialisation nécessaire pour le patient</small>
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Modifier</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+</body>
+</html>
