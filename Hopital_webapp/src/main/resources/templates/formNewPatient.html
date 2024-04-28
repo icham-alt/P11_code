@@ -83,6 +83,14 @@ body {
 						id="Patient_specialisationHelp" class="form-text text-muted">Saisir la spécialisation nécessaire pour le patient</small>
 				</div>
 				
+				<div class="form-group">
+					<label for="Patient_localisationInput">Localisation du patient</label> 
+					<input
+						type="text" th:field="*{Patient_localisation}" class="form-control" id="Patient_localisationInput"
+						aria-describedby="Patient_localisationHelp" placeholder="Saisir la localisation du patient"> <small
+						id="Patient_localisationHelp" class="form-text text-muted">Saisir la localisation du patient</small>
+				</div>
+				
 				
 				<button type="submit" class="btn btn-primary">Créer</button>
 			</form>

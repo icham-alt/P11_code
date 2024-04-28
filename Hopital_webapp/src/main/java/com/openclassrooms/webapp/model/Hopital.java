@@ -2,18 +2,30 @@
 package com.openclassrooms.webapp.model;
 
 import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 @Data
 public class Hopital {
 	
+	 @Id
+	   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+	 @Column(name="Hopital_nom")
     private String Hopital_nom;
 
-    private String Hopital_adresse;
+	 @Column(name="hopitaladresse")
+    private String hopitaladresse;
 
+	 @Column(name="Specialisation")
     private String Specialisation;
 
+	 @Column(name="lits_disponibles")
     private Integer lits_disponibles;
 
 	public Integer getId() {
@@ -32,12 +44,12 @@ public class Hopital {
 		this.Hopital_nom = Hopital_nom;
 	}
 
-	public String getHopital_adresse() {
-		return Hopital_adresse;
+	public String getHopitaladresse() {
+		return hopitaladresse;
 	}
 
-	public void setHopital_adresse(String Hopital_adresse) {
-		this.Hopital_adresse = Hopital_adresse;
+	public void setHopitaladresse(String hopitaladresse) {
+		this.hopitaladresse = hopitaladresse;
 	}
 
 	public String getSpecialisation() {
@@ -56,5 +68,5 @@ public class Hopital {
 		this.lits_disponibles = lits_disponibles;
 	}
 
-    
 }
+    

@@ -17,6 +17,8 @@ public class Patient {
     private String Patient_blessure;
     
     private String Patient_specialisation;
+    
+    private String Patient_localisation;
 
     
 
@@ -24,7 +26,7 @@ public class Patient {
 		return Patient_id;
 	}
 
-	public void setId(Integer Patient_id) {
+	public void setPatient_id(Integer Patient_id) {
 		this.Patient_id = Patient_id;
 	}
 
@@ -66,6 +68,14 @@ public class Patient {
 
 	public void setPatient_specialisation(String Patient_specialisation) {
 		this.Patient_specialisation = Patient_specialisation;
+	}
+	
+	public String getPatient_localisation() {
+		return Patient_localisation;
+	}
+
+	public void setPatient_localisation(String Patient_localisation) {
+		this.Patient_localisation = Patient_localisation;
 	}
 
 	

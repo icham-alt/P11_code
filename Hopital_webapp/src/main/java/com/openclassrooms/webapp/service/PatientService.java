@@ -45,5 +45,20 @@ public class PatientService {
     
         return savedPatient;
     }
+     
+     public String getPatientAddress(int patientId) {
+         // Récupérer le patient à partir de son ID
+         Patient patient = PatientProxy.getPatient(patientId);
+
+         // Vérifier si le patient existe
+         if (patient != null) {
+             // Retourner l'adresse du patient
+             return patient.getPatient_localisation();
+         } else {
+             // Gérer le cas où le patient n'existe pas
+             // Vous pouvez retourner null ou une chaîne vide selon vos besoins
+             return null;
+         }
+     }
 
 }

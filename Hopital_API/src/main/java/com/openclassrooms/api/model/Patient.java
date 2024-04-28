@@ -22,9 +22,13 @@ public class Patient {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Patient_id ;
+	
+	
 
     @Column(name="Patient_nom")
     private String Patient_nom;
+    
+    
 
     @Column(name="Patient_prenom")
     private String Patient_prenom;
@@ -37,6 +41,9 @@ public class Patient {
 
     @Column(name="Patient_specialisation")
     private String Patient_specialisation;
+    
+    @Column(name="Patient_localisation")
+    private String Patient_localisation;
 
     
 
@@ -47,6 +54,8 @@ public class Patient {
 	public void setPatient_id(Long Patient_id) {
 		this.Patient_id = Patient_id;
 	}
+	
+	
 
 	public String getPatient_nom() {
 		return Patient_nom;
@@ -86,6 +95,14 @@ public class Patient {
 
 	public void setPatient_specialisation(String Patient_specialisation) {
 		this.Patient_specialisation = Patient_specialisation;
+	}
+	
+	public String getPatient_localisation() {
+		return Patient_localisation;
+	}
+
+	public void setPatient_localisation(String Patient_localisation) {
+		this.Patient_localisation = Patient_localisation;
 	}
 
 	

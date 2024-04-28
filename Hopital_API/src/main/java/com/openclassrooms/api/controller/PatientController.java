@@ -90,6 +90,11 @@ public class PatientController {
 				currentPatient.setPatient_specialisation(Patient_specialisation);
 			}
 			
+			String Patient_localisation = Patient.getPatient_localisation();
+			if(Patient_localisation != null) {
+				currentPatient.setPatient_localisation(Patient_localisation);
+			}
+			
 			PatientService.savePatient(currentPatient);
 			return currentPatient;
 		} else {
