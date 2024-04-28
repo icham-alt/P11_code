@@ -73,6 +73,29 @@ public class HopitalProxy {
 	}
 	
 	/**
+	 * Get an hopital by the adresse
+	 * @param id The id of the Hopital
+	 * @return The Hopital which matches the id
+	 */
+	public Hopital getHopitalbyadresse(String adresse) {
+		
+		String baseApiUrl = props.getApiUrl();
+		String getHopitalUrl = baseApiUrl + "/hopital/adresse/" + adresse;
+
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<Hopital> response = restTemplate.exchange(
+				getHopitalUrl, 
+				HttpMethod.GET, 
+				null,
+				Hopital.class
+			);
+		
+		log.debug("Get Hopital call " + response.getStatusCode().toString());
+		
+		return response.getBody();
+	}
+	
+	/**
 	 * Add a new Hopital 
 	 * @param e A new Hopital (without an id)
 	 * @return The Hopital full filled (with an id)

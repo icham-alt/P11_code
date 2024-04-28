@@ -20,6 +20,11 @@ public class HopitalService {
     public Optional<Hopital> getHopital(final Long id) {
         return hopitalRepository.findById(id);
     }
+    
+    public  Hopital getHopitalbyAdresse(final String hopitaladresse) {
+        return hopitalRepository.findByHopitaladresse(hopitaladresse);
+    }
+
 
     public Iterable<Hopital> getHopitaux() {
         return hopitalRepository.findAll();

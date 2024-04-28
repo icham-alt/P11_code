@@ -1,5 +1,7 @@
 package com.openclassrooms.api.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,19 @@ public class HopitalController {
 		}
 	}
 	
+	/**
+	 * Read - Get one hopital by address
+	 * @param hopitaladresse The address of the hopital
+	 * @return An Hopital object if found, null otherwise
+	 */
+	 
+	 @GetMapping("/hopital/adresse/{hopitaladresse}")
+	    public Hopital getHopitalByAdresse(@PathVariable("hopitaladresse") String hopitaladresse) {
+	        // Appeler le service pour récupérer l'hôpital par adresse
+	        return hopitalService.getHopitalbyAdresse(hopitaladresse);
+	    }
     /**
+     * 
     * Read - Get all hopitaux
     * @return - An Iterable object of Hopitaux full filled
     */
@@ -73,9 +87,9 @@ public class HopitalController {
 			if(Hopital_nom != null) {
 				currentHopital.setHopital_nom(Hopital_nom);
 			}
-			String Hopital_adresse = hopital.getHopital_adresse();
-			if(Hopital_adresse != null) {
-				currentHopital.setHopital_adresse(Hopital_adresse);;
+			String hopitaladresse = hopital.gethopitaladresse();
+			if(hopitaladresse != null) {
+				currentHopital.sethopitaladresse(hopitaladresse);;
 			}
 			String Specialisation = hopital.getSpecialisation();
 			if(Specialisation != null) {
@@ -117,6 +131,33 @@ public class HopitalController {
 	        return null;
 	    }
 	}
+	
+	/**
+	 * Update - Update number of bed
+	 * @param id - The id of the hopital to update
+	 * @param hopital - The hopital object updated
+	 * @return
+	 */
+	@PutMapping("/updatebedhopitalPatient/{id}")
+	public Hopital updatebedhopitalPatient(@PathVariable("id") final Long id) {
+	    Optional<Hopital> e = hopitalService.getHopital(id);
+	    if(e.isPresent()) {
+	        Hopital currentHopital = e.get();
+	        
+	        Integer currentLitDispo = currentHopital.getlits_disponibles();
+	        if(currentLitDispo != null && currentLitDispo > 0) {
+	            currentHopital.setlits_disponibles(currentLitDispo - 1);
+	            hopitalService.saveHopital(currentHopital);
+	            return currentHopital;
+	        } else {
+	            // Peut-être gérer le cas où aucun lit n'est disponible
+	            return null;
+	        }
+	    } else {
+	        return null;
+	    }
+	}
+
 
 	
 	

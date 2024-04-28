@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhml"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,38 +26,62 @@
 	}
 </style>
 </head>
-<body>
+<body ng-app="hospitalApp">
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href=".">Système de gestion des hopitaux et des patients</a>
 			</div>
+			<!-- Bouton de déconnexion -->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a th:href="@{/logout}">Déconnexion</a></li>
+        </ul>
 		</div>
 	</nav>
 
 
-	<div class="container special">
+	<div class="container special" ng-controller="HomeController">
 		<h2 class="h2">Gestion des hopitaux et des patients</h2>
 		<div class="table-responsive">
 			<table class="table table-striped table-sm">
 				
 				<tbody>
-					<td>
-						<a th:href="@{/home}"><button class="btn btn-info">Consulter et modifier les hopitaux</button></a>
-						<a th:href="@{/Patient}"><button class="btn btn-danger">Consulter et modifier les patients</button></a>		
-					</td>
+					
+					<tr ng-if="profile === 'patient'">
+                    <!-- Les patients ne peuvent pas consulter ni modifier les hôpitaux -->
+                    <td>
+                        <a href="#/Patient"><button class="btn btn-danger">Renseigner et modifier mon profil patient</button></a> 
+                    </td>
+                </tr>
+                <tr ng-if="profile === 'health_professional'">
+                    <!-- Les professionnels de santé peuvent consulter et modifier les hôpitaux -->
+                    <td>
+                        <a href="#/home"><button class="btn btn-info">Consulter et modifier les hopitaux</button></a>
+                        <a href="#/Patient"><button class="btn btn-danger">Consulter et modifier les patients</button></a>        
+                    </td>
+                </tr>
 				</tbody>
 			</table>
 		</div>
 
 	</div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script>
+		var app = angular.module('hospitalApp', []);
+
+		app.controller('HomeController', function($scope) {
+			$scope.profile = 'health_professional'; 
+			
+		});
+		app.controller('HomeController', function($scope) {
+			$scope.profile = 'patient';
+		});
+	</script>
 </body>
 </html>

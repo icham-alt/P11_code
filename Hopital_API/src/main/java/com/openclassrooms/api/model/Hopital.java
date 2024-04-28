@@ -26,8 +26,8 @@ public class Hopital {
     @Column(name="Hopital_nom")
     private String Hopital_nom;
 
-    @Column(name="Hopital_adresse")
-    private String Hopital_adresse;
+    @Column(name="hopitaladresse")
+    private String hopitaladresse;
 
     @Column(name="Specialisation")
     private String Specialisation;
@@ -51,12 +51,12 @@ public class Hopital {
 		this.Hopital_nom = Hopital_nom;
 	}
 
-	public String getHopital_adresse() {
-		return Hopital_adresse;
+	public String gethopitaladresse() {
+		return hopitaladresse;
 	}
 
-	public void setHopital_adresse(String Hopital_adresse) {
-		this.Hopital_adresse = Hopital_adresse;
+	public void sethopitaladresse(String hopitaladresse) {
+		this.hopitaladresse = hopitaladresse;
 	}
 
 	public String getSpecialisation() {

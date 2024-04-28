@@ -47,6 +47,16 @@ public class HopitalController {
 	    }
 	    return "formReserverLit"; 
 	}
+	@GetMapping("/updatebedhopitalPatient/{id}")
+	public String updatebedhopitalPatient(@PathVariable("id") final int id, Model model) {
+	    service.updatebedhopital(id);
+	    Hopital e =  service.getHopital(id);		
+		
+	    if (model != null) {
+	    	model.addAttribute("hopital", e);
+	    }
+	    return "formReserverLitPatient"; 
+	}
 	
 	@GetMapping("/updateHopital/{id}")
 	public String updateHopital(@PathVariable("id") final int id, Model model) {
@@ -58,7 +68,7 @@ public class HopitalController {
 	@GetMapping("/deleteHopital/{id}")
 	public ModelAndView deleteHopital(@PathVariable("id") final int id) {
 		service.deleteHopital(id);
-		return new ModelAndView("redirect:/");		
+		return new ModelAndView("redirect:/home");		
 	}
 	
 	@PostMapping("/saveHopital")
@@ -70,7 +80,18 @@ public class HopitalController {
 			hopital.setlits_disponibles(current.getlits_disponibles());
 		}
 		service.saveHopital(hopital);
-		return new ModelAndView("redirect:/");	
+		return new ModelAndView("redirect:/home");	
 	}
 	
+	@PostMapping("/saveHopitalPatient")
+	public ModelAndView saveHopitalPatient(@ModelAttribute Hopital hopital) {
+		if(hopital.getId() != null) {
+			// Hopital from update form has the password field not filled,
+			// so we fill it with the current password.
+			Hopital current = service.getHopital(hopital.getId());
+			hopital.setlits_disponibles(current.getlits_disponibles());
+		}
+		service.saveHopital(hopital);
+		return new ModelAndView("redirect:/Patient");	
+	}
 }

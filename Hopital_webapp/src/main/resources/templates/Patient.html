@@ -60,8 +60,10 @@
 						<td><span th:text="${Patient.Patient_numero}"> Numéro de téléphone </span></td>
 						<td><span th:text="${Patient.Patient_blessure}"> Blessure du patient </span></td>
 						<td>
-							<a th:href="@{/updatePatient/{id}(id=${Patient.Patient_id})}"><button class="btn btn-info">Modifier</button></a>
-							<a th:href="@{/deletePatient/{id}(id=${Patient.Patient_id})}"><button class="btn btn-danger">Supprimer</button></a>		
+							<!--<a th:href="@{/updatePatient/{Patient_id}(Patient_id=${Patient.Patient_id})}"><button class="btn btn-info">Modifier</button></a>-->
+							<a th:href="@{'/updatePatient/' + ${Patient.Patient_id}}"><button class="btn btn-info">Modifier</button></a>
+							<a th:href="@{'/deletePatient/'+ ${Patient.Patient_id}}"><button class="btn btn-danger">Supprimer</button></a>
+							<a th:href="@{'/nearestHopitals/'+ ${Patient.Patient_id}}"><button class="btn btn-success">Hôpitaux Proches</button></a>		
 						</td>
 					</tr>
 				</tbody>
@@ -77,5 +79,19 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script>
+		var app = angular.module('hospitalApp', ['ngRoute']);
+
+		app.controller('PatientController', function($scope, $http) {
+			$http.get('/api/patients')
+				.then(function(response) {
+					$scope.hopitaux = response.data;
+				});
+		});
+
+		</script>
 </body>
 </html>

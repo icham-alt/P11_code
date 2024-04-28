@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<title>Hopital Web Application</title>
+
+<style>
+body {
+	padding-top: 50px;
+}
+
+.special {
+	padding-top: 50px;
+}
+</style>
+</head>
+<body>
+	
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href=".">Système de gestion des
+					hopitaux</a>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container special">
+
+		<h2 class="h2">Réservation d'un lit</h2>
+		<div>
+			<form method="post"
+				th:action="@{/saveHopitalPatient}" th:object="${hopital}" id="reservationForm">
+				<div class="form-group">
+					<input 
+						type="hidden" th:field="*{id}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="lits_disponiblesInput">Le lit a bien été réservé pour la spécialité mentionné</label> 
+					</div>
+				
+				<button type="submit"  id="validerBtn" class="btn btn-primary">Valider</button>
+			</form>
+		</div>
+
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		    $("#reservationForm").submit(function(event){
+		        // Empêcher la soumission du formulaire par défaut
+		       
+		        
+		        // Faire l'appel à l'URL ici
+		        $.ajax({
+		            url: "http://localhost:9002/updatebedhopital/1",
+		            type: "PUT",
+		            success: function(data, status) {
+		                // Traiter la réponse de l'appel si nécessaire
+		                alert("Data: " + data + " Status: " + status);
+		                
+		                // Soumettre le formulaire une fois l'appel terminé
+		                $("#reservationForm").unbind('submit').submit();
+		            }
+		        });
+		    });
+		});
+	</script>
+</body>
+</html>

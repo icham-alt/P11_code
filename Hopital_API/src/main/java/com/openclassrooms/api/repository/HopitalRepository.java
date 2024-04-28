@@ -9,5 +9,5 @@ import com.openclassrooms.api.model.Hopital;
 
 @Repository
 public interface HopitalRepository extends CrudRepository<Hopital, Long> {
-
+    Hopital findByHopitaladresse(String hopitaladresse);
 }
