@@ -64,7 +64,7 @@ Les contributions sont les bienvenues ! Si vous souhaitez améliorer cette appli
 
 ## Auteurs
 
-- [Votre Nom](https://github.com/votre_nom)
+- [Ouelaa Icham](https://github.com/icham-alt)
 
 ---
 
