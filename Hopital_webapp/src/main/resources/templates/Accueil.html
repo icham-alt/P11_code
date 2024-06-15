@@ -5,6 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -13,8 +14,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-
+	crossorigin="anonymous"> 
+	
 <title>Hopital Web Application</title>
 
 <style>
@@ -41,6 +42,8 @@
 	</nav>
 
 
+
+
 	<div class="container special" ng-controller="HomeController">
 		<h2 class="h2">Gestion des hopitaux et des patients</h2>
 		<div class="table-responsive">
@@ -48,17 +51,17 @@
 				
 				<tbody>
 					
-					<tr ng-if="profile === 'patient'">
+				<tr th:if="${profile == 'patient'}">
                     <!-- Les patients ne peuvent pas consulter ni modifier les hôpitaux -->
                     <td>
-                        <a href="#/Patient"><button class="btn btn-danger">Renseigner et modifier mon profil patient</button></a> 
+                        <a href="/Patient"><button class="btn btn-danger">Renseigner et modifier un profil patient</button></a> 
                     </td>
                 </tr>
-                <tr ng-if="profile === 'health_professional'">
+                <tr th:if="${profile == 'health_professional'}">
                     <!-- Les professionnels de santé peuvent consulter et modifier les hôpitaux -->
                     <td>
-                        <a href="#/home"><button class="btn btn-info">Consulter et modifier les hopitaux</button></a>
-                        <a href="#/Patient"><button class="btn btn-danger">Consulter et modifier les patients</button></a>        
+                        <a href="/home"><button class="btn btn-info">Consulter et modifier les hopitaux</button></a>
+                        <a href="/Patient"><button class="btn btn-danger">Consulter et modifier les patients</button></a>        
                     </td>
                 </tr>
 				</tbody>
@@ -67,21 +70,7 @@
 
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script>
-		var app = angular.module('hospitalApp', []);
-
-		app.controller('HomeController', function($scope) {
-			$scope.profile = 'health_professional'; 
-			
-		});
-		app.controller('HomeController', function($scope) {
-			$scope.profile = 'patient';
-		});
-	</script>
+	
+	
 </body>
 </html>

@@ -35,7 +35,20 @@
 			</div>
 		</div>
 	</nav>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+	<script>
+		var app = angular.module('hospitalApp', ['ngRoute']);
 
+		app.controller('HospitalController', function($scope, $http) {
+			$http.get('/api/hopitaux')
+				.then(function(response) {
+					$scope.hopitaux = response.data;
+				});
+		});
+
+		
+	</script>
 	<div ng-controller="HospitalController" class="container special">
 		<h2 class="h2">Liste des hopitaux</h2>
 		<div class="table-responsive">
@@ -69,19 +82,6 @@
 		<a th:href="@{/Patient}"><button class="btn btn-danger">Consulter et modifier les patients</button></a>
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-	<script>
-		var app = angular.module('hospitalApp', ['ngRoute']);
-
-		app.controller('HospitalController', function($scope, $http) {
-			$http.get('/api/hopitaux')
-				.then(function(response) {
-					$scope.hopitaux = response.data;
-				});
-		});
-
-		
-	</script>
+	
 </body>
 </html>
