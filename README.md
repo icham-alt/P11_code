@@ -58,6 +58,117 @@ mvn spring-boot:run
 
 L'application sera déployée sur `localhost:9007`.
 
+
+## Exécution des tests 
+
+
+### Introduction
+
+Ce projet contient des fichiers de tests pour JMeter et Selenium. Ce guide explique comment télécharger et installer ces outils, importer les fichiers de tests fournis (`http_request.jmx` pour JMeter et `Hopital_webapp.side` pour Selenium), et exécuter les tests.
+
+### Prérequis
+
+- Java Development Kit (JDK) installé sur votre machine.
+- Un navigateur web compatible (de préférence Chrome ou Firefox).
+
+## JMeter
+
+### Installation de JMeter
+
+1. **Télécharger JMeter :**
+   Rendez-vous sur le site officiel d'Apache JMeter : [JMeter Download](https://jmeter.apache.org/download_jmeter.cgi)
+   
+2. **Extraire le fichier téléchargé :**
+   Téléchargez la version binaire (zip ou tgz) de JMeter et extrayez-la dans le répertoire de votre choix.
+
+3. **Configurer JMeter :**
+   Assurez-vous que le chemin vers le JDK est correctement configuré dans votre variable d'environnement `PATH`.
+
+### Importation et exécution du fichier `http_request.jmx`
+
+1. **Lancer JMeter :**
+   Accédez au répertoire où vous avez extrait JMeter, puis exécutez `jmeter.bat` (Windows) ou `jmeter` (Unix/Linux) situé dans le dossier `bin`.
+
+2. **Importer le fichier de test :**
+   - Dans l'interface de JMeter, allez dans `File` > `Open` et sélectionnez le fichier `HTTP Request.jmx` fourni.
+
+3. **Exécuter les tests :**
+   - Une fois le fichier importé, vous pouvez exécuter les tests en cliquant sur le bouton vert avec l'icône de lecture (`Start`).
+
+## Selenium
+
+### Installation de Selenium
+
+1. **Télécharger Selenium IDE :**
+   Selenium IDE est disponible en tant qu'extension de navigateur. Téléchargez et installez l'extension pour votre navigateur :
+   - [Chrome Web Store](https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd)
+   - [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/)
+
+### Importation et exécution du fichier `Hopital_webapp.side`
+
+1. **Lancer Selenium IDE :**
+   Ouvrez votre navigateur et lancez l'extension Selenium IDE.
+
+2. **Importer le fichier de test :**
+   - Dans Selenium IDE, cliquez sur `Open Project` et sélectionnez le fichier `Hopital_webapp.side` fourni.
+
+3. **Exécuter les tests :**
+   - Une fois le projet importé, cliquez sur le bouton de lecture (`Run all tests`) pour exécuter tous les tests dans le fichier.
+
+## Conclusion des tests
+
+Vous avez maintenant les instructions pour installer JMeter et Selenium, importer les fichiers de tests fournis et exécuter les tests. Pour toute question ou problème, veuillez consulter la documentation officielle de [JMeter](https://jmeter.apache.org/usermanual/get-started.html) et [Selenium IDE](https://www.selenium.dev/selenium-ide/docs/en/introduction/command-line-runner).
+
+
+# Guide d'utilisation de la Pipeline GitLab CI
+
+Ce guide fournit des instructions pour utiliser la pipeline GitLab CI pour construire, tester et déployer l'application Hopital.
+
+
+## Builder et exécuter la PoC
+
+1. Clonez le dépôt GitLab :
+
+git clone https://gitlab.com/icham-alt/P11_code_gitlab.git
+
+2. Accédez au répertoire Hopital_API :
+
+cd Hopital_API
+
+3. Lancez la construction et l'exécution de la preuve de concept :
+
+mvn clean package
+
+4. Répétez les étapes 2 et 3 pour le répertoire Hopital_webapp.
+
+
+
+## Exécuter les tests
+
+La pipeline GitLab CI exécute automatiquement les tests pour chaque étape. Vous pouvez consulter les résultats des tests dans l'interface GitLab.
+
+
+## Exécuter la chaîne de build
+
+Pour exécuter manuellement la chaîne de build dans GitLab CI :
+
+1. Accédez au projet sur GitLab.
+2. Cliquez sur l'onglet "CI / CD" dans le menu de navigation.
+3. Cliquez sur le bouton "Run Pipeline" pour déclencher manuellement la chaîne de build.
+
+
+## Règles du workflow pour le versioning
+
+Nous utilisons les règles de versionnement sémantique pour notre projet Hopital :
+
+- Les mises à jour majeures (1.0.0 -> 2.0.0) sont effectuées en cas de changements majeurs et incompatibles.
+- Les mises à jour mineures (1.0.0 -> 1.1.0) ajoutent des fonctionnalités de manière rétrocompatible.
+- Les corrections de bogues (1.0.0 -> 1.0.1) ne modifient pas les fonctionnalités existantes mais corrigent des problèmes.
+
+Pour plus d'informations sur les règles de versionnement sémantique, consultez https://semver.org/.
+
+
+
 ## Contribuer
 
 Les contributions sont les bienvenues ! Si vous souhaitez améliorer cette application, n'hésitez pas à soumettre une demande de tirage (pull request).
