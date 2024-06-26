@@ -39,24 +39,49 @@ public class HopitalController {
 	
 	@GetMapping("/updatebedhopital/{id}")
 	public String updatebedhopital(@PathVariable("id") final int id, Model model) {
-	    service.updatebedhopital(id);
-	    Hopital e =  service.getHopital(id);		
-		
-	    if (model != null) {
-	    	model.addAttribute("hopital", e);
+	    Hopital e = service.getHopital(id);  // Récupérer l'hôpital par ID
+	    if (e != null) {
+	        Integer litsDisponibles = e.getlits_disponibles();
+	        if (litsDisponibles != null && litsDisponibles > 0) {
+	            service.updatebedhopital(id);  // Mettre à jour les lits disponibles
+	            model.addAttribute("hopital", e);
+	            model.addAttribute("status", "success");
+	        } else {
+	            model.addAttribute("hopital", e);  // Ajouter l'hôpital même si aucun lit n'est disponible
+	            model.addAttribute("status", "noBedsAvailable");
+	        }
+	    } else {
+	        // Créer un objet Hopital vide pour éviter l'erreur dans le template
+	        model.addAttribute("hopital", new Hopital());
+	        model.addAttribute("status", "notFound");
 	    }
+
 	    return "formReserverLit"; 
 	}
+
 	@GetMapping("/updatebedhopitalPatient/{id}")
 	public String updatebedhopitalPatient(@PathVariable("id") final int id, Model model) {
-	    service.updatebedhopital(id);
-	    Hopital e =  service.getHopital(id);		
-		
-	    if (model != null) {
-	    	model.addAttribute("hopital", e);
+	    Hopital e = service.getHopital(id);  // Récupérer l'hôpital par ID
+	    if (e != null) {
+	        Integer litsDisponibles = e.getlits_disponibles();
+	        if (litsDisponibles != null && litsDisponibles > 0) {
+	            service.updatebedhopital(id);  // Mettre à jour les lits disponibles
+	            model.addAttribute("hopital", e);
+	            model.addAttribute("status", "success");
+	        } else {
+	            model.addAttribute("hopital", e);  // Ajouter l'hôpital même si aucun lit n'est disponible
+	            model.addAttribute("status", "noBedsAvailable");
+	        }
+	    } else {
+	        // Créer un objet Hopital vide pour éviter l'erreur dans le template
+	        model.addAttribute("hopital", new Hopital());
+	        model.addAttribute("status", "notFound");
 	    }
+
 	    return "formReserverLitPatient"; 
 	}
+
+
 	
 	@GetMapping("/updateHopital/{id}")
 	public String updateHopital(@PathVariable("id") final int id, Model model) {
@@ -74,8 +99,7 @@ public class HopitalController {
 	@PostMapping("/saveHopital")
 	public ModelAndView saveHopital(@ModelAttribute Hopital hopital) {
 		if(hopital.getId() != null) {
-			// Hopital from update form has the password field not filled,
-			// so we fill it with the current password.
+			
 			Hopital current = service.getHopital(hopital.getId());
 			hopital.setlits_disponibles(current.getlits_disponibles());
 		}
@@ -86,8 +110,7 @@ public class HopitalController {
 	@PostMapping("/saveHopitalPatient")
 	public ModelAndView saveHopitalPatient(@ModelAttribute Hopital hopital) {
 		if(hopital.getId() != null) {
-			// Hopital from update form has the password field not filled,
-			// so we fill it with the current password.
+			
 			Hopital current = service.getHopital(hopital.getId());
 			hopital.setlits_disponibles(current.getlits_disponibles());
 		}
